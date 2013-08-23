@@ -21,7 +21,7 @@ with open(file_path) as data:
             fixture_date = datetime.datetime.strptime(line.strip(), '%d %B %Y').strftime('%d/%m/%y')
         elif ' v ' in line:
             if ',' in line:
-                real_line = line.split(',', 1)[0]
+                real_line = text.split(',', 1)[0]
             else:
                 real_line = line
             vs = real_line.strip().split(' v ')

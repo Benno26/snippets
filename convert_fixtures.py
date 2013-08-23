@@ -2,14 +2,19 @@
 
 import csv
 import datetime
+import os
 
-file_location = '/Users/malc/Desktop/fixtures.txt'
-csv_file_location = '/Users/malc/Desktop/csv_file.csv'
+home_path = os.path.expanduser('~')
+file_location = 'fixtures.txt'
+csv_location = 'csv_file.csv'
+
+file_path = os.path.join(home_path,file_location)
+csv_path = os.path.join(home_path,csv_location)
 
 fixtures = []
 fixture_date = ''
 
-with open(file_location) as data:
+with open(file_path) as data:
     for line in data:
         fixture = {}
         if ' v ' not in line:
@@ -29,7 +34,7 @@ with open(file_location) as data:
             fixtures.append(fixture)
             
 keys = ['Div','Date', 'HomeTeam', 'AwayTeam']
-f = open(csv_file_location, 'w+')
+f = open(csv_path, 'w+')
 dict_writer = csv.DictWriter(f, keys)
 dict_writer.writer.writerow(keys)
 dict_writer.writerows(fixtures)
